@@ -1,52 +1,57 @@
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 import { Button } from "./src/components/Button";
 import { TextInput } from "./src/components/TextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  const [formValues, setFormValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "samuh@gmail.com",
-    address: {
-      country: "Brazil",
-      city: "Brazilia",
-    },
-  });
+  const [text, setText] = useState("");
+  const [list, setList] = useState([]);
 
-  function updateFirst(text: string) {
-    setFormValues({
-      ...formValues,
-      firstName: text,
-    });
+  function addItem() {
+    setList((prev) => [...prev, text]);
   }
 
-  function updateLast(text: string) {
-    setFormValues({
-      ...formValues,
-      lastName: text,
-    });
+  function removeItem(text: string) {
+    setList((prev) => prev.filter((item) => item !== text));
   }
 
-  function updateCity(text: string) {
-    setFormValues({
-      ...formValues,
-      address: {
-        ...formValues.address,
-        city: text,
-      },
-    });
-  }
+  useEffect(() => {
+    console.log(text);
+  }, [text]);
 
   return (
-    <View style={styles.container}>
-      <TextInput value={formValues.firstName} onChangeText={updateFirst} />
-      <TextInput value={formValues.lastName} onChangeText={updateLast} />
-      <TextInput value={formValues.address.city} onChangeText={updateCity} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.input}></View>
+        <TextInput value={text} onChangeText={setText} />
+        <Button
+          title="+"
+          style={{ width: 50, marginLeft: 10 }}
+          onPress={addItem}
+        />
+      </View>
 
-      <Text>{`${formValues.firstName} ${formValues.lastName}:\n${formValues.email} \n ${formValues.address.city} - ${formValues.address.country}`}</Text>
-    </View>
+      {list.map((item) => (
+        <View key={item} style={styles.item}>
+          <Text style={styles.text}>{item}</Text>
+          <TouchableOpacity
+            style={styles.removeButton}
+            onPress={() => removeItem(item)}
+          >
+            <Text style={styles.textRemove}>x</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+    </SafeAreaView>
   );
 }
 
@@ -57,4 +62,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  input: {},
+  text: {},
+  removeButton: {},
+  item: {},
+  textRemove: {},
 });
