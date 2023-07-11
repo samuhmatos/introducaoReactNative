@@ -1,8 +1,14 @@
 import {
+  Alert,
+  Button,
   Image,
+  Platform,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
+  TouchableHighlight,
+  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
@@ -10,6 +16,11 @@ import {
 export default function App() {
   function changeName(text: string) {
     console.log(text);
+  }
+
+  function onPressButton() {
+    console.log("Pressionou o botão");
+    Alert.alert("Meu primeiro App", Platform.OS);
   }
 
   return (
@@ -41,6 +52,35 @@ export default function App() {
           fontSize: 18,
         }}
       />
+
+      <Button color={"#550ab1"} title="Enviar" onPress={onPressButton} />
+
+      <TouchableHighlight
+        onPressIn={() => console.log("onPressIn")}
+        underlayColor={"#550ab1"}
+        onPress={() => console.log("Highlight")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonTitle}>Highlight</Text>
+      </TouchableHighlight>
+
+      <TouchableOpacity
+        onPressOut={() => console.log("onPressOut")}
+        activeOpacity={0.7}
+        onPress={() => console.log("Opacity")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonTitle}>Opacity</Text>
+      </TouchableOpacity>
+
+      <Pressable
+        delayLongPress={1000}
+        onLongPress={() => console.log("onLongPress")}
+        onPress={() => console.log("Pressble")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonTitle}>Pressble</Text>
+      </Pressable>
     </View>
   );
 }
@@ -51,5 +91,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    height: 50,
+    width: 200,
+    backgroundColor: "#550ab1",
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonTitle: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });
