@@ -5,39 +5,47 @@ import { TextInput } from "./src/components/TextInput";
 import { useState } from "react";
 
 export default function App() {
-  const [count, setCount] = useState<number>(0);
-  const [showCount, setShowCount] = useState(true);
+  const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "samuh@gmail.com",
+    address: {
+      country: "Brazil",
+      city: "Brazilia",
+    },
+  });
 
-  function increment() {
-    setCount((prevState) => prevState + 1);
-    console.log(count);
+  function updateFirst(text: string) {
+    setFormValues({
+      ...formValues,
+      firstName: text,
+    });
   }
 
-  function decrement() {
-    setCount((prevState) => prevState - 1);
-    console.log(count);
+  function updateLast(text: string) {
+    setFormValues({
+      ...formValues,
+      lastName: text,
+    });
   }
 
-  function toggleCount() {
-    setShowCount((prevState) => !prevState);
-    console.log(showCount);
+  function updateCity(text: string) {
+    setFormValues({
+      ...formValues,
+      address: {
+        ...formValues.address,
+        city: text,
+      },
+    });
   }
 
   return (
     <View style={styles.container}>
-      {showCount && (
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>{count}</Text>
-      )}
+      <TextInput value={formValues.firstName} onChangeText={updateFirst} />
+      <TextInput value={formValues.lastName} onChangeText={updateLast} />
+      <TextInput value={formValues.address.city} onChangeText={updateCity} />
 
-      <Button title="+ 1" onPress={increment} style={{ marginTop: 20 }} />
-      <Button title="- 1" onPress={decrement} style={{ marginTop: 10 }} />
-
-      <Button
-        title="show"
-        variant="secondary"
-        onPress={toggleCount}
-        style={{ marginTop: 10 }}
-      />
+      <Text>{`${formValues.firstName} ${formValues.lastName}:\n${formValues.email} \n ${formValues.address.city} - ${formValues.address.country}`}</Text>
     </View>
   );
 }
