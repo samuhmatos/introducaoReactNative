@@ -10,5 +10,4 @@ To set up Nubble App locally, follow these steps:
 2. Navegue para o diretório criado: `cd introducaoReactNative`
 3. Instale as dependências necessárias: `yarn ou npm install`
 4. Inicie o projeto: `yarn start ou npm start`
-5. Follow the instructions to launch the app on an emulator or physical device.
-6. Abra o emulador ou instale o aplicativo Expo Go e rode o conecte com o projeto.
+5. Abra o emulador ou instale o aplicativo Expo Go e rode o conecte com o projeto.
