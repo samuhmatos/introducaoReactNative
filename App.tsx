@@ -1,54 +1,41 @@
-import {
-  Alert,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 
 import { Button } from "./src/components/Button";
 import { TextInput } from "./src/components/TextInput";
+import { useState } from "react";
 
 export default function App() {
-  function changeName(text: string) {
-    console.log(text);
+  const [count, setCount] = useState<number>(0);
+  const [showCount, setShowCount] = useState(true);
+
+  function increment() {
+    setCount((prevState) => prevState + 1);
+    console.log(count);
   }
 
-  function onPressButton() {
-    console.log("Pressionou o botão");
-    Alert.alert("Meu primeiro App", Platform.OS);
+  function decrement() {
+    setCount((prevState) => prevState - 1);
+    console.log(count);
+  }
+
+  function toggleCount() {
+    setShowCount((prevState) => !prevState);
+    console.log(showCount);
   }
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 25, fontWeight: "bold" }}>
-        Profissional React Native
-      </Text>
+      {showCount && (
+        <Text style={{ fontSize: 25, fontWeight: "bold" }}>{count}</Text>
+      )}
 
-      <TextInput
-        autoCapitalize="none"
-        placeholder="Digite seu nome"
-        onChangeText={changeName}
-      />
-
-      <TextInput
-        autoCapitalize="none"
-        secureTextEntry
-        placeholder="Digite sua senha"
-        onChangeText={changeName}
-      />
+      <Button title="+ 1" onPress={increment} style={{ marginTop: 20 }} />
+      <Button title="- 1" onPress={decrement} style={{ marginTop: 10 }} />
 
       <Button
-        title="Entrar"
-        onPress={() => console.log("entrar")}
-        style={{ marginTop: 20 }}
-      />
-      <Button
-        title="Criar conta"
+        title="show"
         variant="secondary"
-        onPress={() => console.log("cadastrar")}
+        onPress={toggleCount}
         style={{ marginTop: 10 }}
       />
     </View>

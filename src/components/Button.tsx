@@ -1,4 +1,5 @@
-import React from "react";import {
+import React from "react";
+import {
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,7 +14,6 @@ interface ButtonProps extends TouchableOpacityProps {
 export function Button({
   title,
   variant = "primary",
-  onPress,
   style,
   ...rest
 }: ButtonProps) {

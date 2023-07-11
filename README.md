@@ -1,6 +1,6 @@
-## Curso de introdução ao React Native da CoffStack
+# Curso de introdução ao React Native da CoffStack
 Cada commit representa uma aula do curso.
-Sempre surgir alguma dúvida, confira o repositório.
+Sempre que surgir alguma dúvida e precisa ver o código da aula, venha e confira o repositório.
 
 ## Instalação do projeto
 
