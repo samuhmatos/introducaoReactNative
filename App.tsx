@@ -1,21 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import { Image, StyleSheet, Text, View, ViewStyle } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          lineHeight: 40,
-          backgroundColor: "red",
-          fontSize: 25,
-          textAlign: "center",
-        }}
-      >
-        Open up App.js to start working on your app!
-      </Text>
       <Text> Profissional React Native</Text>
-      <StatusBar style="auto" />
+      <View style={{ backgroundColor: "red" }}>
+        <Image
+          onLoad={({ nativeEvent }) => {
+            console.log("width: ", nativeEvent.source.width);
+            console.log("height: ", nativeEvent.source.height);
+          }}
+          resizeMode="contain"
+          style={{ width: 300, height: 300 }}
+          source={{
+            uri: "https://images.unsplash.com/photo-1661956602153-23384936a1d3",
+          }}
+        />
+      </View>
     </View>
   );
 }
