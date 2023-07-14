@@ -9,7 +9,6 @@ export default function App() {
           width: 100,
           height: 100,
           backgroundColor: "gold",
-          alignSelf: "flex-start",
         }}
       />
       <View
@@ -17,6 +16,14 @@ export default function App() {
           width: 100,
           height: 100,
           backgroundColor: "dodgerblue",
+        }}
+      />
+
+      <View
+        style={{
+          width: 100,
+          height: 100,
+          backgroundColor: "limegreen",
         }}
       />
     </View>
@@ -28,7 +35,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#eeee",
     flex: 1,
     flexDirection: "row",
-    //justifyContent: "space-around",
+    flexWrap: "wrap",
+    justifyContent: "center",
     alignItems: "center",
+    alignContent: "center",
   },
 });
