@@ -1,6 +1,8 @@
 import {
   ActivityIndicator,
   Alert,
+  FlatList,
+  ListRenderItemInfo,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -13,7 +15,7 @@ import {
 import { Button } from "./src/components/Button";
 import { TextInput } from "./src/components/TextInput";
 import { useEffect, useState } from "react";
-import { coffeeList } from "./src/CoffeList/data/coffeeList";
+import { Coffee, coffeeList } from "./src/CoffeList/data/coffeeList";
 import { CoffeeItem } from "./src/CoffeList/CoffeeItem";
 
 async function getListFromApi(): Promise<string[]> {
@@ -25,13 +27,18 @@ async function getListFromApi(): Promise<string[]> {
 }
 
 export default function App() {
-  const [text, setText] = useState("");
-  const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  function renderItem({ item }: ListRenderItemInfo<Coffee>) {
+    return <CoffeeItem {...item} />;
+  }
 
   return (
     <View style={styles.container}>
-      <ScrollView
+      <FlatList
+        data={coffeeList}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => item.name}
+      />
+      {/* <ScrollView
         // bounces={false}
         // showsHorizontalScrollIndicator={false}
         // showsVerticalScrollIndicator={false}
@@ -48,7 +55,7 @@ export default function App() {
         {coffeeList.map((item, index) => (
           <CoffeeItem {...item} key={item.name} />
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
