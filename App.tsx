@@ -5,8 +5,8 @@ export default function App() {
     <View style={styles.container}>
       <View
         style={{
-          width: 200,
-          height: 200,
+          width: 100,
+          height: 100,
           backgroundColor: "tomato",
           flexShrink: 1,
         }}
@@ -14,7 +14,7 @@ export default function App() {
       <View
         style={{
           width: 100,
-          height: 300,
+          height: 100,
           backgroundColor: "gold",
           flexShrink: 1,
           // flexBasis:150,
@@ -25,7 +25,7 @@ export default function App() {
       <View
         style={{
           width: 100,
-          height: 300,
+          height: 100,
           backgroundColor: "dodgerblue",
           flexShrink: 1,
           // flexGrow:1
@@ -35,7 +35,7 @@ export default function App() {
       <View
         style={{
           width: 100,
-          height: 300,
+          height: 100,
           backgroundColor: "limegreen",
         }}
       />
@@ -48,5 +48,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#eeee",
     flex: 1,
     flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignContent: "center",
+    gap: 20,
   },
 });
