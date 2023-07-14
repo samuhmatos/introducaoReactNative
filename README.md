@@ -3,8 +3,7 @@ Cada commit representa uma aula do curso.
 Sempre que surgir alguma dúvida e precisa ver o código da aula, venha e confira o repositório.
 
 ## Instalação do projeto
-
-To set up Nubble App locally, follow these steps:
+
 
 1. Clone o repositório: `git clone https://github.com/samuhmatos/introducaoReactNative.git`
 2. Navegue para o diretório criado: `cd introducaoReactNative`
