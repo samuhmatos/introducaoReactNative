@@ -4,7 +4,14 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={{ width: 100, height: 100, backgroundColor: "tomato" }} />
-      <View style={{ width: 100, height: 100, backgroundColor: "gold" }} />
+      <View
+        style={{
+          width: 100,
+          height: 100,
+          backgroundColor: "gold",
+          alignSelf: "flex-start",
+        }}
+      />
       <View
         style={{
           width: 100,
@@ -20,7 +27,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#eeee",
     flex: 1,
-    //flexDirection: "column",
-    justifyContent: "space-around",
+    flexDirection: "row",
+    //justifyContent: "space-around",
+    alignItems: "center",
   },
 });
