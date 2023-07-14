@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Alert,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,6 +13,8 @@ import {
 import { Button } from "./src/components/Button";
 import { TextInput } from "./src/components/TextInput";
 import { useEffect, useState } from "react";
+import { coffeeList } from "./src/CoffeList/data/coffeeList";
+import { CoffeeItem } from "./src/CoffeList/CoffeeItem";
 
 async function getListFromApi(): Promise<string[]> {
   return new Promise((resolve) => {
@@ -26,59 +29,27 @@ export default function App() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function getList() {
-    try {
-      const values = await getListFromApi();
-      setList(values);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-  useEffect(() => {
-    getList();
-  }, []);
-
-  function addItem() {
-    setList((prev) => [...prev, text]);
-  }
-
-  function removeItem(text: string) {
-    setList((prev) => prev.filter((item) => item !== text));
-  }
-
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <View style={styles.input}></View>
-        <TextInput value={text} onChangeText={setText} />
-        <Button
-          title="+"
-          style={{ width: 50, marginLeft: 10 }}
-          onPress={addItem}
-        />
-      </View>
-      {loading ? (
-        <ActivityIndicator
-          size="large"
-          color="#550ab1"
-          style={{ marginTop: 50 }}
-        />
-      ) : (
-        list.map((item) => (
-          <View key={item} style={styles.item}>
-            <Text style={styles.text}>{item}</Text>
-            <TouchableOpacity
-              style={styles.removeButton}
-              onPress={() => removeItem(item)}
-            >
-              <Text style={styles.textRemove}>x</Text>
-            </TouchableOpacity>
-          </View>
-        ))
-      )}
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ScrollView
+        // bounces={false}
+        // showsHorizontalScrollIndicator={false}
+        // showsVerticalScrollIndicator={false}
+        // style={{ paddingHorizontal: 10, backgroundColor: "red" }}
+        // contentContainerStyle={{
+        //   paddingHorizontal: 10,
+        //   backgroundColor: "blue",
+        // }}
+
+        //contentOffset={{ y: 300 }}
+        onScroll={({ nativeEvent }) => console.log(nativeEvent.contentOffset.y)}
+        scrollEventThrottle={16}
+      >
+        {coffeeList.map((item, index) => (
+          <CoffeeItem {...item} key={item.name} />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
@@ -86,12 +57,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
-  input: {},
-  text: {},
-  removeButton: {},
-  item: {},
-  textRemove: {},
 });
