@@ -17,6 +17,8 @@ import { TextInput } from "./src/components/TextInput";
 import { useEffect, useState } from "react";
 import { Coffee, coffeeList } from "./src/CoffeList/data/coffeeList";
 import { CoffeeItem } from "./src/CoffeList/CoffeeItem";
+import { CoffeeHeader } from "./src/CoffeList/CoffeeHeader";
+import { SeparatorItem } from "./src/CoffeList/SeparatorItem";
 
 async function getListFromApi(): Promise<string[]> {
   return new Promise((resolve) => {
@@ -34,9 +36,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <FlatList
+        ListHeaderComponent={CoffeeHeader}
+        ItemSeparatorComponent={SeparatorItem}
         data={coffeeList}
         renderItem={renderItem}
         keyExtractor={(item, index) => item.name}
+        //windowSize={3}
+        //initialNumToRender={20}
       />
       {/* <ScrollView
         // bounces={false}
